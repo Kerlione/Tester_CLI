@@ -27,8 +27,7 @@ void v_check_beg()
 {
 	srand(time(NULL));
 	std::fstream f;
-	int iter = rand() % 50001 + 1000;
-	std::cout << iter << std::endl;
+	int iter = rand() % 50001 + 1000; //"good" random
 	f.open("v_beg.csv", std::ios::in);
 	int size = 0;
 	f.seekg(0, f.end);
@@ -39,33 +38,31 @@ void v_check_beg()
 	{
 		f.open("v_beg.csv", std::ios::out);
 		const char s[5] = "x,y\n";
-		f.write(s, sizeof(s));
+		f.write(s, 4);
 		f.close();
 	}
+	clock_t begin = clock();
 	for (int i = 0; i < iter; i++)
 	{
 		std::vector<int> v;
-		clock_t begin = clock();
 		v.insert(v.begin(), rand()%256);
-		clock_t end = clock();
-		double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
-		//std::cout << elapsed_time << " ";
-		f.open("v_beg.csv", std::ios::app);
-		String ^s = String::Concat(iter, ',', elapsed_time, '\n');
-		Console::WriteLine(gcnew System::String(s));
-		IntPtr ptrToNativeString = Marshal::StringToHGlobalAnsi(s);
-		char* nativeString = static_cast<char*>(ptrToNativeString.ToPointer());
-		std::cout << nativeString << " ";
-		f.write(nativeString, sizeof(nativeString));
-		f.close();
 	}
+	clock_t end = clock();
+	double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
+	f.open("v_beg.csv", std::ios::app);
+	String ^s = String::Concat(iter, Convert::ToString(","), elapsed_time, Convert::ToString("\n"));
+	IntPtr ptrToNativeString = Marshal::StringToHGlobalAnsi(s);
+	char* nativeString = static_cast<char*>(ptrToNativeString.ToPointer());
+	std::cout << nativeString;
+	f.write(nativeString, sizeof(nativeString)); //great writing
+	f.close();
 }
 
 void l_check_beg()
 {
 	srand(time(NULL));
 	std::fstream f;
-	int iter = rand() % 10001;
+	int iter = rand() % 50001 + 1000; //"good" random
 	f.open("l_beg.csv", std::ios::in);
 	int size = 0;
 	f.seekg(0, f.end);
@@ -76,26 +73,59 @@ void l_check_beg()
 	{
 		f.open("l_beg.csv", std::ios::out);
 		const char s[5] = "x,y\n";
-		f.write(s, sizeof(s));
+		f.write(s, 4);
 		f.close();
 	}
+	clock_t begin = clock();
 	for (int i = 0; i < iter; i++)
 	{
 		std::list<int> l;
-		clock_t begin = clock();
 		l.insert(l.begin(), rand() % 256);
-		clock_t end = clock();
-		double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
-		f.open("l_beg.csv", std::ios::app);
-		String ^s = Convert::ToString(iter) + ',' + Convert::ToString(elapsed_time) + '\n'; // fix convert + write
-		f.write((char *)&s, sizeof(s));
-		f.close();
 	}
+	clock_t end = clock();
+	double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
+	f.open("l_beg.csv", std::ios::app);
+	String ^s = String::Concat(iter, Convert::ToString(","), elapsed_time, Convert::ToString("\n"));
+	IntPtr ptrToNativeString = Marshal::StringToHGlobalAnsi(s);
+	char* nativeString = static_cast<char*>(ptrToNativeString.ToPointer());
+	std::cout << nativeString;
+	f.write(nativeString, sizeof(nativeString)); //great writing
+	f.close();
 }
 
 void v_check_mid()
 {
-	;
+	srand(time(NULL));
+	std::fstream f;
+	int iter = rand() % 50001 + 1000; //"good" random
+	f.open("v_beg.csv", std::ios::in);
+	int size = 0;
+	f.seekg(0, f.end);
+	size = f.tellg();
+	f.seekg(0, f.beg);
+	f.close();
+	if (size < 0)
+	{
+		f.open("v_beg.csv", std::ios::out);
+		const char s[5] = "x,y\n";
+		f.write(s, 4);
+		f.close();
+	}
+	clock_t begin = clock();
+	for (int i = 0; i < iter; i++)
+	{
+		std::vector<int> v;
+		v.insert(v.begin(), rand() % 256);
+	}
+	clock_t end = clock();
+	double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
+	f.open("v_beg.csv", std::ios::app);
+	String ^s = String::Concat(iter, Convert::ToString(","), elapsed_time, Convert::ToString("\n"));
+	IntPtr ptrToNativeString = Marshal::StringToHGlobalAnsi(s);
+	char* nativeString = static_cast<char*>(ptrToNativeString.ToPointer());
+	std::cout << nativeString;
+	f.write(nativeString, sizeof(nativeString)); //great writing
+	f.close();;
 }
 
 void l_check_mid()
