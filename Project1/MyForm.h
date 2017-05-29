@@ -1,10 +1,10 @@
 #pragma once
 
 #include<iostream>
-void v_check_beg();
-void l_check_beg();
-void v_check_mid();
-void l_check_mid();
+void v_check_beg(FILE *pfile);
+void l_check_beg(FILE *pfile);
+void v_check_mid(FILE *pfile);
+void l_check_mid(FILE *pfile);
 
 namespace Project1 {
 
@@ -207,13 +207,15 @@ namespace Project1 {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 float iter = trackBar1->Value;
+				 FILE *pfile;
+				 pfile = fopen("test.txt", "a+");
 				 if (checkBox1->Checked)
 				 {
 					 if (radioButton1->Checked)
 					 {
 						 for (int i = 0; i < iter; i++)
 						 {
-							 v_check_beg();
+							 v_check_beg(pfile);
 							 progressBar1->Value = (i / iter) * 50;
 						 }
 					 }
@@ -221,7 +223,7 @@ namespace Project1 {
 					 {
 						 for (int i = 0; i < iter; i++)
 						 {
-							 v_check_mid();
+							 v_check_mid(pfile);
 							 progressBar1->Value = (i / iter) * 50;
 						 }
 					 }
@@ -233,7 +235,7 @@ namespace Project1 {
 					 {
 						 for (int i = 0; i < iter; i++)
 						 {
-							 l_check_beg();
+							 l_check_beg(pfile);
 							 progressBar1->Value = (i / iter) * 50+50;
 						 }
 					 }
@@ -241,11 +243,12 @@ namespace Project1 {
 					 {
 						 for (int i = 0; i < iter; i++)
 						 {
-							 l_check_mid();
+							 l_check_mid(pfile);
 							 progressBar1->Value = (i / iter) * 50+50;
 						 }
 					 }
 				 }
+				 fclose(pfile);
 	}
 
 	private: System::Void Scroool(System::Object^  sender, System::EventArgs^  e)
