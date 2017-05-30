@@ -29,4 +29,24 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Release\cmp_beg_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Release\cmp_mid_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Release\l_beg_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Release\l_mid_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Release\v_beg_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Release\v_mid_plot.py">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
